@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Services - Gutter Cleaning, Dryer Vent & Water Heater Maintenance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background: #229954;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #3498db;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .features li {
+            padding: 0.5rem 0;
+            color: #555;
+        }
+
+        .features li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .why-choose {
+            background: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .why-choose h2 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit {
+            padding: 1rem;
+        }
+
+        .benefit h3 {
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .close {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .cta-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .cta-section p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="contact-info">
+            <div class="contact-item">
+                <span>📞</span>
+                <strong>(555) 123-4567</strong>
+            </div>
+            <div class="contact-item">
+                <span>✉️</span>
+                <strong>info@homeservices.com</strong>
+            </div>
+        </div>
+        
+        <h1>Professional Home Services</h1>
+        <p>Quality Maintenance for Your Home - Flat Rate Pricing</p>
+        
+        <button class="cta-button" onclick="openModal()">Schedule Service Now</button>
+    </header>
+
+    <div class="container">
+        <section class="services">
+            <div class="service-card">
+                <h3>Gutter Cleaning</h3>
+                <p>Keep your gutters flowing freely and protect your home from water damage.</p>
+                <div class="price">$150</div>
+                <ul class="features">
+                    <li>Complete gutter cleaning</li>
+                    <li>Downspout flushing</li>
+                    <li>Debris removal</li>
+                    <li>Visual inspection included</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>Dryer Vent Cleaning</h3>
+                <p>Improve efficiency and reduce fire hazards with professional dryer vent cleaning.</p>
+                <div class="price">$125</div>
+                <ul class="features">
+                    <li>Complete vent cleaning</li>
+                    <li>Lint removal</li>
+                    <li>Airflow improvement</li>
+                    <li>Safety inspection</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>Water Heater Flush</h3>
+                <p>Extend the life of your water heater and maintain optimal performance.</p>
+                <div class="price">$135</div>
+                <ul class="features">
+                    <li>Complete tank flush</li>
+                    <li>Sediment removal</li>
+                    <li>Basic inspection</li>
+                    <li>Improved efficiency</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="why-choose">
+            <h2>Why Choose Us?</h2>
+            <div class="benefits">
+                <div class="benefit">
+                    <h3>Flat Rate Pricing</h3>
+                    <p>No surprises - you know the cost upfront</p>
+                </div>
+                <div class="benefit">
+                    <h3>Experienced</h3>
+                    <p>Professional service you can trust</p>
+                </div>
+                <div class="benefit">
+                    <h3>Reliable</h3>
+                    <p>Show up on time and get the job done right</p>
+                </div>
+                <div class="benefit">
+                    <h3>Simple Scheduling</h3>
+                    <p>Easy online booking - no hassle</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Don't Wait - Schedule Today!</h2>
+            <p>Protect your home with professional maintenance services</p>
+            <button class="cta-button" onclick="openModal()">Get Started</button>
+        </section>
+    </div>
+
+    <!-- Modal for Google Form -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Schedule Your Service</h2>
+                <button class="close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- 
+                ╔════════════════════════════════════════════════════════════╗
+                ║  PASTE YOUR GOOGLE FORM EMBED CODE HERE                   ║
+                ║                                                            ║
+                ║  Instructions:                                             ║
+                ║  1. Go to your Google Form                                 ║
+                ║  2. Click "Send" button                                    ║
+                ║  3. Click the "<>" (embed) icon                            ║
+                ║  4. Copy the iframe code                                   ║
+                ║  5. Paste it below, replacing this comment                 ║
+                ║                                                            ║
+                ║  Example:                                                  ║
+                ║  <iframe src="https://docs.google.com/forms/d/e/..."      ║
+                ║   width="100%" height="1200" frameborder="0"              ║
+                ║   marginheight="0" marginwidth="0">Loading…</iframe>      ║
+                ║                                                            ║
+                ║  Recommended height: 1200-1500 for most forms             ║
+                ╚════════════════════════════════════════════════════════════╝
+                -->
+                
+                <p style="text-align: center; color: #666; padding: 3rem;">
+                    Google Form will appear here once embedded
+                </p>
+                
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Home Services. All rights reserved.</p>
+        <p>Serving the local community with quality home maintenance</p>
+    </footer>
+
+    <script>
+        function openModal() {
+            document.getElementById('serviceModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('serviceModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
