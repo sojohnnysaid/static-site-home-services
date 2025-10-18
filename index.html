@@ -163,86 +163,17 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.6);
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 2% auto;
+        .calendar-section {
+            margin: 3rem 0;
             padding: 0;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 800px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
-            animation: slideIn 0.3s;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 12px 12px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h2 {
-            margin: 0;
-            font-size: 1.8rem;
-        }
-
-        .close {
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            background: none;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-
-        .close:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .modal-body {
-            padding: 2rem;
-            max-height: 70vh;
-            overflow-y: auto;
+        .calendar-container {
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
 
         .footer {
@@ -315,7 +246,9 @@
         <h1>Professional Home Services</h1>
         <p>Quality Maintenance for Your Home - Flat Rate Pricing</p>
         
-        <button class="cta-button" onclick="openModal()">Schedule Service Now</button>
+        <a href="https://www.appointmentbooking.co/book/117843138742274631342" target="_blank" style="text-decoration: none;">
+            <button class="cta-button">Schedule Service Now</button>
+        </a>
     </header>
 
     <div class="container">
@@ -380,92 +313,23 @@
         </section>
 
         <section class="calendar-section">
-            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 1rem; font-size: 2rem;">Check Our Availability</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 2rem;">See available time slots and book your appointment</p>
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 1rem; font-size: 2rem;">Check Our Availability & Book</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">Schedule your appointment directly below</p>
             
             <div class="calendar-container">
                 <iframe src="https://www.appointmentbooking.co/book/117843138742274631342" 
                         width="100%" 
-                        height="800" 
+                        height="1000" 
                         frameborder="0"
                         style="border: none; border-radius: 8px;">
                 </iframe>
             </div>
         </section>
-
-        <section class="cta-section">
-            <h2>Don't Wait - Schedule Today!</h2>
-            <p>Protect your home with professional maintenance services</p>
-            <button class="cta-button" onclick="openModal()">Get Started</button>
-        </section>
-    </div>
-
-    <!-- Modal for Google Form -->
-    <div id="serviceModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Schedule Your Service</h2>
-                <button class="close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <!-- 
-                ╔════════════════════════════════════════════════════════════╗
-                ║  PASTE YOUR GOOGLE FORM EMBED CODE HERE                   ║
-                ║                                                            ║
-                ║  Instructions:                                             ║
-                ║  1. Go to your Google Form                                 ║
-                ║  2. Click "Send" button                                    ║
-                ║  3. Click the "<>" (embed) icon                            ║
-                ║  4. Copy the iframe code                                   ║
-                ║  5. Paste it below, replacing this comment                 ║
-                ║                                                            ║
-                ║  Example:                                                  ║
-                ║  <iframe src="https://docs.google.com/forms/d/e/..."      ║
-                ║   width="100%" height="1200" frameborder="0"              ║
-                ║   marginheight="0" marginwidth="0">Loading…</iframe>      ║
-                ║                                                            ║
-                ║  Recommended height: 1200-1500 for most forms             ║
-                ╚════════════════════════════════════════════════════════════╝
-                -->
-                
-                <p style="text-align: center; color: #666; padding: 3rem;">
-                    Google Form will appear here once embedded
-                </p>
-                
-            </div>
-        </div>
     </div>
 
     <footer class="footer">
         <p>&copy; 2025 Home Services. All rights reserved.</p>
         <p>Serving the local community with quality home maintenance</p>
     </footer>
-
-    <script>
-        function openModal() {
-            document.getElementById('serviceModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('serviceModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            const modal = document.getElementById('serviceModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
-        });
-    </script>
 </body>
 </html>
